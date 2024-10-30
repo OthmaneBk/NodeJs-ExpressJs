@@ -1,3 +1,5 @@
+//chainde vide ne contient pas des espaces
+
 const mysql=require('mysql');
 
 class MySQLRepository{
@@ -10,7 +12,7 @@ class MySQLRepository{
         };
         this.db=mysql.createConnection(this.params);
     }
-
+    //open ca sera une promisse
     open(){
         return new Promise((resolve, reject) =>{
             this.db.connect(err =>{
@@ -27,6 +29,23 @@ class MySQLRepository{
     close(){
         this.db.end();
     }
+
+    //la fonction select est promise
+    //let {result, fields} = db.select('Authors');
+    /*select(tableName){
+        return new Promise((resolve, reject) =>{
+            let query=`SELECT * FROM ${tableName}`;
+
+            this.db.query(query, (err,result,fields)=>{
+                if(err){
+                    reject(err)
+                }
+                else{
+                    resolve({result,fields:fields.map(f =>f.name)})
+                }
+            })
+        })
+    }*/
 
     select(tableName, key, value){
         let query;
