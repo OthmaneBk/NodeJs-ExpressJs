@@ -1,5 +1,4 @@
-//la syntaxe commun Js
-const express=require('express');//fonction pour creere notre serveur
+const express=require('express');
 const cors=require('cors');
 const requestLogger = require('./middlewares/reqest-logger');
 const BiblioService = require('./services/biblio-service');
@@ -8,7 +7,7 @@ const AuthorsRouter = require('./routes/authors-router');
 
 
 class Server{
-    //cons de initialisation
+
     constructor(port=3000){
         this.db=new MySQLRepository('Biblio');
         this.service=new BiblioService(this.db);
@@ -21,21 +20,17 @@ class Server{
     }
 
     config(){
-        //Middlewares(Intercepteurs des requetes HTTP)
-        this.app.use(requestLogger);//j'utilsie la configuration
-        //je la passe comme parametere, je l'approgamme, apres l'exuction des requests
-        //a chque request les configuration seeont intercepterait
-        this.app.use(express.static('public'))//il permet de confifure les chamies satatiques public
+
+        this.app.use(requestLogger);
+        this.app.use(express.static('public'))
     }
 
 
-    //End-Points Rest (Web Service Rest)
-    //?name=NAME
     routes(){
         this.app.get('/html',(req, res) =>{
-            res.send('<h1>Serveur Express (Node.js)<h1>');//envoyer du HTML
+            res.send('<h1>Serveur Express (Node.js)<h1>');
         } )
-        this.app.use('/biblio/authors',this.authorsRouter.router)//j'ouvre le router si le prefix commance par /biblio/authors
+        this.app.use('/biblio/authors',this.authorsRouter.router)
 
     }
 
@@ -53,5 +48,4 @@ class Server{
     }
 }
 
-//exportation
 module.exports=Server;
