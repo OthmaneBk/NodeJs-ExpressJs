@@ -5,4 +5,4 @@ Node.js is a runtime environment that allows you to run JavaScript code on the s
 
 # N.B
 Common JS syntax used in this project.
-Design Patterns used MVC.
+Design Patterns used Layered Architecture.
